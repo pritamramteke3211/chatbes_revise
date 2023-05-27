@@ -15,21 +15,9 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   console.log('a user connected');
 
-  // setTimeout(() => {
-  //   // socket.send('This event triggered from server side')
-
-  //   let obj = {
-  //     channel_name: 'My Channel',
-  //     subsribers: '2k+',
-  //     message: 'Please like this video and subscribe my channel',
-  //   }
-
-  //   socket.emit('customEvent', {data: obj})
-  // }, 4000);
-
-
-  socket.on('clientEvent', (data)=>{
-    console.log('client data received', data)
+  socket.on('send_message', (data)=>{4
+    console.log("send_message client",data)
+    io.emit('received_message', data)
   })
 
   socket.on('disconnect', () => {
