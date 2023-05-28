@@ -28,10 +28,21 @@ const App = () => {
   }, [])
 
   useEffect(() => {
+    
     socketServices.on('received_message', msg =>{
+  
       console.log("message received in reactApp", msg)
+      let cloneArry = [...data]
+      setdata(cloneArry.concat(msg))
     })
-  }, [])
+    
+   
+  }, [data])
+
+  useEffect(() => {
+    setmessage('')
+  }, [data])
+  
 
   const sendMessage = ()=>{
     if (!!message) {
@@ -58,6 +69,15 @@ const App = () => {
       title='Send'
       onPress={sendMessage}
       />
+
+      {data.map((v,idx)=>{
+        return(
+          <View key={idx}>
+            <Text>{v}</Text>           
+          </View>
+        )
+      }
+      )}
     </SafeAreaView>
     // </Provider>
   )

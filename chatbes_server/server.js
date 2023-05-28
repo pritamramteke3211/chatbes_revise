@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-
+ 
   socket.on('send_message', (data)=>{4
     console.log("send_message client",data)
     io.emit('received_message', data)
@@ -25,9 +25,9 @@ io.on('connection', (socket) => {
   });
 });
 
-const ip = '192.168.175.248'
+const ip = '192.168.38.248'
 
-server.listen(port,"192.168.175.248", () => {
+server.listen(port,ip, () => {
   console.log(`server running at http://${ip}:${port}/`);
 }); 
 
